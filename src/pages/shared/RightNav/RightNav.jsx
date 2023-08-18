@@ -1,14 +1,11 @@
 import React from 'react';
 
-
-
-const Home = () => {
+const RightNav = () => {
     return (
         <div>
-
-
+            right
         </div>
     );
 };
 
-export default Home;
+export default RightNav;
