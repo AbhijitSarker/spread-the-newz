@@ -18,7 +18,6 @@ const NewsCard = ({ news }) => {
         total_view,
         rating
     } = news;
-    console.log(news)
     return (
 
         <Card className="mb-3">

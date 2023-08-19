@@ -1,14 +1,36 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Button, Container, Form } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../../providers/AuthProvider';
 
 const Register = () => {
+
+    const { createUser } = useContext(AuthContext);
+
+    const handleRegister = (event) => {
+        event.preventDefault();
+        const form = event.target;
+        const name = form.name.value;
+        const email = form.email.value;
+        const password = form.password.value;
+
+        createUser(email, password)
+            .then(result => {
+                const createdUser = result.user;
+                console.log(createdUser)
+            })
+            .catch(error => {
+                console.log(error)
+            })
+    }
+
+
     return (
         <Container className='mx-auto'>
-            <Form className='mx-auto w-25'>
-                <Form.Group className="mb-3" controlId="formBasicEmail">
+            <Form onSubmit={handleRegister} className='mx-auto w-25'>
+                <Form.Group className="mb-3" >
                     <Form.Label>Name</Form.Label>
-                    <Form.Control type="text" name='naem' required placeholder="Enter name" />
+                    <Form.Control type="text" name='name' required placeholder="Enter name" />
 
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -28,7 +50,7 @@ const Register = () => {
                     Register
                 </Button> <br />
                 <Form.Text>
-                    Already have an Account? <Link to='/register'>Login</Link>
+                    Already have an Account? <Link to='/login'>Login</Link>
 
                 </Form.Text>
             </Form>

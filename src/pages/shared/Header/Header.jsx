@@ -12,7 +12,11 @@ import { FaUserCircle } from 'react-icons/fa';
 
 const Header = () => {
 
-    const { user } = useContext(AuthContext);
+    const { user, logOut } = useContext(AuthContext);
+
+    const handleLogOut = () => {
+        logOut();
+    }
 
     return (
         <Container >
@@ -46,7 +50,7 @@ const Header = () => {
                             </Nav.Link>}
 
                             {user ?
-                                <Button variant="secondary">Log Out</Button>
+                                <Button onClick={handleLogOut} variant="secondary">Log Out</Button>
                                 : <Link to='/login'><Button variant="secondary">Log In</Button></Link>}
 
                         </Nav>
